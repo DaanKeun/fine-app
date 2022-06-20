@@ -8,21 +8,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [BrowserAnimationsModule, BrowserModule, AppRoutingModule, MatToolbarModule, MatIconModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(iconRegistry: MatIconRegistry) {
-    iconRegistry.setDefaultFontSetClass('material-icons-outlined');
-  }
+    constructor(iconRegistry: MatIconRegistry) {
+        iconRegistry.setDefaultFontSetClass('material-icons-outlined');
+    }
 }

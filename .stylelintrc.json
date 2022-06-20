@@ -1,0 +1,13 @@
+{
+    "extends": ["stylelint-config-sass-guidelines", "stylelint-config-prettier"],
+    "plugins": ["stylelint-selector-bem-pattern"],
+    "rules": {
+        "selector-class-pattern": null,
+        "selector-pseudo-element-no-unknown": null,
+        "max-nesting-depth": 4,
+        "selector-max-compound-selectors": 4,
+        "plugin/selector-bem-pattern": {
+            "preset": "bem"
+        }
+    }
+}

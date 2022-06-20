@@ -1,0 +1,16 @@
+@use 'utils/breakpoints.mixin';
+@use 'partials/theming';
+@use 'utils/utilities';
+@use 'partials/variables';
+
+html,
+body {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

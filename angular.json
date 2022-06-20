@@ -31,8 +31,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/life-client-app/src/styles",
+                "projects/life-client-app/src/styles/partials",
+                "projects/life-client-app/src/styles/utils"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -99,8 +106,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/life-client-app/src/styles",
+                "projects/life-client-app/src/styles/partials",
+                "projects/life-client-app/src/styles/utils"
+              ]
+            },
             "scripts": []
           }
         }

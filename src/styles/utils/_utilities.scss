@@ -1,0 +1,39 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '../partials/variables';
+@use '../partials/utilities-variables';
+@use 'utilities.mixin';
+@use 'breakpoints.mixin';
+
+// Loop over each breakpoint
+@each $breakpoint in map.keys(variables.$grid-breakpoints) {
+    // Generate media query if needed
+    @include breakpoints.media-breakpoint-up($breakpoint) {
+        $infix: breakpoints.breakpoint-infix($breakpoint, variables.$grid-breakpoints);
+
+        // Loop over each utility property
+        @each $key, $utility in utilities-variables.$utilities {
+            // The utility can be disabled with `false`, thus check if the utility is a map first
+            // Only proceed if responsive media queries are enabled or if it's the base media query
+            @if meta.type-of($utility) == 'map' and (map.get($utility, responsive) or $infix == '') {
+                @include utilities.generate-utility($utility, $infix);
+            }
+        }
+    }
+}
+
+// Print utilities
+@media print {
+    @each $key, $utility in utilities-variables.$utilities {
+        // The utility can be disabled with `false`, thus check if the utility is a map first
+        // Then check if the utility needs print styles
+        @if meta.type-of($utility) == 'map' and map.get($utility, print) == true {
+            @include utilities.generate-utility($utility, '-print');
+        }
+    }
+}
+
+@mixin variable($property, $variable, $fallback) {
+    #{$property}: $fallback;
+    #{$property}: var($variable, $fallback);
+}

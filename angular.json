@@ -113,6 +113,16 @@
                     "options": {
                         "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
                     }
+                },
+                "deploy": {
+                    "builder": "@angular/fire:deploy",
+                    "options": {
+                        "prerender": false,
+                        "ssr": false,
+                        "browserTarget": "fine-app:build:production",
+                        "firebaseProject": "fine-app-2e3ea",
+                        "firebaseHostingSite": "fine-app-2e3ea"
+                    }
                 }
             }
         }

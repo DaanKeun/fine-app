@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "fine-app-2e3ea"
+  },
+  "targets": {
+    "fine-app-2e3ea": {
+      "hosting": {
+        "fine-app": [
+          "fine-app-2e3ea"
+        ]
+      }
+    }
   }
 }

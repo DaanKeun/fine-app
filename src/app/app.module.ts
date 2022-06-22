@@ -19,9 +19,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent],
+    declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, SignUpComponent],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
@@ -37,6 +40,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatInputModule,
         ReactiveFormsModule,
         MatProgressBarModule,
+        MatDividerModule,
+        MatCardModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

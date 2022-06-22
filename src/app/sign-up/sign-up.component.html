@@ -1,0 +1,28 @@
+<mat-card class="sign-up">
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <h3>Sign up with email</h3>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" required />
+            <mat-error *ngIf="email?.hasError('required')">This field is required</mat-error>
+            <mat-error *ngIf="email?.hasError('email')">Please type a valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" required />
+            <button type="button" matSuffix mat-icon-button (click)="showPassword = !showPassword" tabindex="-1">
+                <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="password?.hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+
+        <mat-error class="mb-2" *ngIf="signUpError">
+            {{ signUpError.message }}
+        </mat-error>
+
+        <button mat-raised-button [disabled]="signUpForm.invalid || (loading$ | async)">
+            Sign in
+            <mat-progress-bar mode="indeterminate" *ngIf="loading$ | async"></mat-progress-bar>
+        </button>
+    </form>
+</mat-card>

@@ -1,8 +1,11 @@
+@use 'variables';
+
 .toolbar {
     display: grid;
     grid-template-columns: 1fr auto;
 
     &__title {
+        cursor: pointer;
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: auto 1fr;
@@ -18,5 +21,9 @@
     &__login-form form {
         display: grid;
         grid-auto-flow: row;
+    }
+
+    &__login-form {
+        grid-gap: variables.$spacer-2;
     }
 }

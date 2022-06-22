@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, filter, from, map, Observable, tap } from 'rxjs';
-import { Auth, authState, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, User } from '@angular/fire/auth';
+import {
+    Auth,
+    authState,
+    createUserWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
+    User,
+} from '@angular/fire/auth';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { UserCredential } from '@firebase/auth';
 
@@ -37,5 +46,9 @@ export class LoginService {
 
     signOut() {
         return from(signOut(this.auth));
+    }
+
+    signUp(email: string, password: string) {
+        return from(createUserWithEmailAndPassword(this.auth, email, password));
     }
 }

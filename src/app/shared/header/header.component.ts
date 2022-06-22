@@ -4,6 +4,8 @@ import { LoginService } from '../../core/services/login.service';
 import { BehaviorSubject, finalize, Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import firebase from 'firebase/compat';
+import AuthError = firebase.auth.AuthError;
 
 @Component({
     selector: 'app-header',
@@ -21,6 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     showLoginButton$: Observable<boolean> | null = null;
     showLogoutButton$: Observable<boolean> | null = null;
+
+    signInError: AuthError | undefined;
 
     loading$ = new BehaviorSubject<boolean>(false);
 
@@ -48,6 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     signInWithGoogle() {
         this.loading$.next(true);
+        this.signInError = undefined;
 
         this.loginService
             .signInWithGoogle()
@@ -55,14 +60,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 finalize(() => this.loading$.next(false)),
                 takeUntil(this.destroy$),
             )
-            .subscribe(() => {
-                this.menuTrigger?.closeMenu();
-                this.router.navigate(['dashboard']);
+            .subscribe({
+                next: () => this.closeMenuAndNavigate('dashboard'),
+                error: (error: AuthError) => (this.signInError = error),
             });
     }
 
     signInWithEmailPassword() {
+        if (this.emailPasswordLoginForm.invalid) {
+            return;
+        }
+
         this.loading$.next(true);
+        this.signInError = undefined;
 
         this.loginService
             .signInWithEmailAndPassword(this.email?.value ?? '', this.password?.value ?? '')
@@ -70,19 +80,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 finalize(() => this.loading$.next(false)),
                 takeUntil(this.destroy$),
             )
-            .subscribe(() => {
-                this.menuTrigger?.closeMenu();
-                this.router.navigate(['dashboard']);
+            .subscribe({
+                next: () => this.closeMenuAndNavigate('dashboard'),
+                error: (error: AuthError) => (this.signInError = error),
             });
     }
 
     signOut() {
+        this.loading$.next(true);
+
         this.loginService
             .signOut()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => {
-                this.menuTrigger?.closeMenu();
-                this.router.navigate(['login']);
-            });
+            .pipe(
+                takeUntil(this.destroy$),
+                finalize(() => this.loading$.next(false)),
+            )
+            .subscribe(() => this.closeMenuAndNavigate('login'));
+    }
+
+    private closeMenuAndNavigate(location: string) {
+        this.menuTrigger?.closeMenu();
+        this.router.navigate([location]);
     }
 }

@@ -1,0 +1,11 @@
+@use 'variables';
+
+.sign-up {
+    margin: variables.$spacer-2 auto;
+    max-width: 320px;
+
+    form {
+        display: grid;
+        grid-auto-flow: row;
+    }
+}

@@ -29,11 +29,7 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles/styles.scss"],
                         "stylePreprocessorOptions": {
-                            "includePaths": [
-                                "projects/life-client-app/src/styles",
-                                "projects/life-client-app/src/styles/partials",
-                                "projects/life-client-app/src/styles/utils"
-                            ]
+                            "includePaths": ["src/styles", "src/styles/partials", "src/styles/utils"]
                         },
                         "scripts": []
                     },
@@ -99,11 +95,7 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/styles/styles.scss"],
                         "stylePreprocessorOptions": {
-                            "includePaths": [
-                                "projects/life-client-app/src/styles",
-                                "projects/life-client-app/src/styles/partials",
-                                "projects/life-client-app/src/styles/utils"
-                            ]
+                            "includePaths": ["src/styles", "src/styles/partials", "src/styles/utils"]
                         },
                         "scripts": []
                     }

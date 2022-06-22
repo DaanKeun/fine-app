@@ -8,7 +8,7 @@
     },
     "hosting": [
         {
-            "target": "fine-ass-app",
+            "target": "fine-app",
             "public": "dist/fine-app",
             "ignore": ["**/.*"],
             "headers": [

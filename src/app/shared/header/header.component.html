@@ -1,0 +1,48 @@
+<mat-toolbar class="toolbar" color="primary">
+    <div class="toolbar__title">
+        <mat-icon>local_fire_department</mat-icon>
+        <span class="pl-2">Fine Ass(upol) App</span>
+    </div>
+    <button mat-icon-button class="toolbar__login-menu" #menuTrigger="matMenuTrigger" [mat-menu-trigger-for]="loginMenu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #loginMenu>
+        <div class="toolbar__login-form p-2" (click)="$event.stopPropagation()" *ngIf="showLoginButton$ | async">
+            <button mat-raised-button (click)="signInWithGoogle()">
+                <mat-icon class="pr-1">login</mat-icon>
+                Sign in with Google
+            </button>
+            <form
+                class="pt-2"
+                [formGroup]="emailPasswordLoginForm"
+                (ngSubmit)="signInWithEmailPassword()"
+                (keydown.tab)="$event.stopPropagation()"
+            >
+                <h3>Sign in with email</h3>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="text" formControlName="email" required />
+                    <mat-error *ngIf="email?.hasError('required')">This field is required</mat-error>
+                    <mat-error *ngIf="email?.hasError('email')">Please type a valid email</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" required />
+                    <button matSuffix mat-icon-button (click)="showPassword = !showPassword" tabindex="-1">
+                        <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password?.hasError('required')">This field is required</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button [disabled]="emailPasswordLoginForm.invalid || (loading$ | async)">
+                    Sign in
+                    <mat-progress-bar mode="indeterminate" *ngIf="loading$ | async"></mat-progress-bar>
+                </button>
+            </form>
+        </div>
+        <div class="toolbar__login-form p-2" (click)="$event.stopPropagation()" *ngIf="showLogoutButton$ | async">
+            <button mat-raised-button (click)="signOut()">Sign out</button>
+        </div>
+    </mat-menu>
+</mat-toolbar>
+<div class="toolbar-placeholder"></div>

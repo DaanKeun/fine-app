@@ -1,6 +1,9 @@
 @use 'variables';
+@use 'breakpoints.mixin';
 
 .toolbar {
+    position: fixed;
+    top: 0;
     display: grid;
     grid-template-columns: 1fr auto;
 
@@ -13,8 +16,13 @@
     }
 
     &__placeholder {
+        content: '';
         padding-top: 64px;
         width: 100%;
+
+        @include breakpoints.media-breakpoint-down(xs) {
+            padding-top: 56px;
+        }
     }
 
     &__login-form,

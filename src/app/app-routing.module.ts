@@ -23,6 +23,11 @@ const routes: Routes = [
         path: '',
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'dashboard'
+            },
+            {
                 component: DashboardComponent,
                 path: 'dashboard',
             },

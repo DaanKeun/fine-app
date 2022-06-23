@@ -17,14 +17,14 @@ import { UserCredential } from '@firebase/auth';
     providedIn: 'root',
 })
 export class LoginService {
-    user: Observable<User | null> = EMPTY;
+    user$: Observable<User | null> = EMPTY;
 
     showLoginButton$: Observable<boolean> | null = null;
     showLogoutButton$: Observable<boolean> | null = null;
 
     constructor(private auth: Auth) {
         if (this.auth) {
-            this.user = authState(this.auth);
+            this.user$ = authState(this.auth);
 
             const isLoggedIn$ = authState(this.auth).pipe(
                 traceUntilFirst('auth'),

@@ -10,6 +10,16 @@ body {
     padding: 0 !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0 !important;
+}
+
 body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     margin: 0;
@@ -23,5 +33,26 @@ body {
         left: 0;
         position: absolute;
         width: 100%;
+    }
+}
+
+
+.container {
+    margin: auto;
+    padding: variables.$spacer-2;
+
+    @include breakpoints.media-breakpoint-up(sm) {
+        min-width: 540px;
+        max-width: 540px;
+    }
+
+    @include breakpoints.media-breakpoint-up(md) {
+        min-width: 900px;
+        max-width: 900px;
+    }
+
+    @include breakpoints.media-breakpoint-up(lg) {
+        min-width: 1220px;
+        max-width: 1220px;
     }
 }

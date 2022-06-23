@@ -22,6 +22,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [AppComponent, DashboardComponent, HeaderComponent, LoginComponent, SignUpComponent],
@@ -42,6 +43,7 @@ import { MatCardModule } from '@angular/material/card';
         MatProgressBarModule,
         MatDividerModule,
         MatCardModule,
+        MatListModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

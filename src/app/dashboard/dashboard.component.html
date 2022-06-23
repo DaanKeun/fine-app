@@ -1,0 +1,20 @@
+<div class="container" *ngIf="activeUser$ | async; let activeUser">
+    <mat-card>
+        <div class="user-details">
+            <h3 class="user-details__email">
+                <b class="pr-2">Email:</b> {{activeUser.email}}
+            </h3>
+            <h3 class="user-details__display-name">
+                <b class="pr-2">Username:</b> {{(!!activeUser.username) ? activeUser.username : 'N/A'}}
+                <button class="ml-2" type="button" mat-icon-button>
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </button>
+            </h3>
+            <h3 class="user-details__fines-count">
+                <b class="pr-2">Fines:</b> {{activeUser.fines?.length ?? 0}}
+            </h3>
+        </div>
+    </mat-card>
+</div>
